@@ -16,7 +16,7 @@ const router =Router();
 const UserDetailsController: Middleware = async (req, res) => {
 	const id = req.params.id;
 	const user = await User.findOne({ _id: id  , is_deleted: false });
-	if (!user || user.is_deleted) throw new NotFoundError("User Not Found");
+	if (!user || user.is_deleted) throw new NotFoundError("User Not Found" , "لم يتم العثور علي المستخدم");
 	res.status(200).json({status: 200, data: user })
 }
 

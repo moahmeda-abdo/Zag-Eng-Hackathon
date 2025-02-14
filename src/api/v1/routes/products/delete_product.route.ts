@@ -16,7 +16,7 @@ const router = Router();
 const DeleteProductController:Middleware = async (req, res ) => {
 	const id =req.params.id as string; 
 	const product = await Product.findByIdAndUpdate(id, {is_deleted:true});
-	if (!product) throw new NotFoundError("product Not Found With Given Id");
+	if (!product) throw new NotFoundError("product Not Found With Given Id", "لم يتم العثور علي المنتج");
 	res.status(204).end()
 }
 

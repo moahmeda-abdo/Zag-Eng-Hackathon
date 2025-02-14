@@ -27,7 +27,7 @@ const UpdateOrderController: Middleware = async (req, res) => {
       {new: true}
     ).select("-is_deleted");
 
-    if (!order || order.is_deleted) throw new NotFoundError("order Not Found With Given Id");
+    if (!order || order.is_deleted) throw new NotFoundError("order Not Found With Given Id", "لم يتم العثور علي الطلب");
 
     res.status(200).json({status: 200, data: (order) } )
 }

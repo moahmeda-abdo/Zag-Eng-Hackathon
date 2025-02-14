@@ -55,7 +55,7 @@ app.use(BindRequestNamespace);
 app.use("/", API_Router);
 
 app.use((_, __, ___) => {
-  throw new NotFoundError("Route Not Found");
+  throw new NotFoundError("Route Not Found" , "المسار غير موجود");
 });
 app.use(HandleErrors);
 

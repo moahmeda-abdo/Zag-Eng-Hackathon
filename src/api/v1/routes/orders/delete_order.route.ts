@@ -16,7 +16,7 @@ const router = Router();
 const DeleteOrderController:Middleware = async (req, res ) => {
 	const id =req.params.id as string; 
 	const order = await Order.findByIdAndUpdate(id, {is_deleted:true});
-	if (!order) throw new NotFoundError("order Not Found With Given Id");
+	if (!order) throw new NotFoundError("order Not Found With Given Id" , "لم يتم العثور علي الطلب");
 	res.status(204).end()
 }
 

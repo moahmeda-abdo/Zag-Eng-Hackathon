@@ -27,7 +27,7 @@ const UpdateCategoryController: Middleware = async (req, res) => {
       {new: true}
     ).select("-is_deleted");
 
-    if (!category || category.is_deleted) throw new NotFoundError("category Not Found With Given Id");
+    if (!category || category.is_deleted) throw new NotFoundError("category Not Found With Given Id" , "لم يتم العثور علي الفئة");
 
     res.status(200).json({status: 200, data: (category) } )
 }

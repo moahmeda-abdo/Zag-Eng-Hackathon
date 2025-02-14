@@ -16,7 +16,7 @@ const router = Router();
 const DeleteUserController:Middleware = async (req, res ) => {
 	const id =req.params.id as string; 
 	const user = await User.findByIdAndUpdate(id, {is_deleted:true});
-	if (!user) throw new NotFoundError("user Not Found With Given Id");
+	if (!user) throw new NotFoundError("user Not Found With Given Id", "لم يتم العثور علي المستخدم");
 	res.status(204).end()
 }
 

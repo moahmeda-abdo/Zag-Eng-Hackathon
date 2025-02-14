@@ -27,7 +27,7 @@ const UpdateProductController: Middleware = async (req, res) => {
       {new: true}
     ).select("-is_deleted");
 
-    if (!product || product.is_deleted) throw new NotFoundError("product Not Found With Given Id");
+    if (!product || product.is_deleted) throw new NotFoundError("product Not Found With Given Id", "لم يتم العثور علي المنتج");
 
     res.status(200).json({status: 200, data: (product) } )
 }

@@ -27,7 +27,7 @@ const UpdateUserController: Middleware = async (req, res) => {
       {new: true}
     ).select("-is_deleted");
 
-    if (!user || user.is_deleted) throw new NotFoundError("user Not Found With Given Id");
+    if (!user || user.is_deleted) throw new NotFoundError("user Not Found With Given Id", "لم يتم العثور علي المستخدم");
 
     res.status(200).json({status: 200, data: (user) } )
 }
