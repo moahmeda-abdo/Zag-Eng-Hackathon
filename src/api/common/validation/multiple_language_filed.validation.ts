@@ -2,7 +2,7 @@ import Joi, { StringSchema } from "joi";
 import { System_language } from "../types.common";
 
 export function MultipleLanguageFiledValidationSchema() {
-  const languages: System_language[] = ["en-us", "ar-sa"];
+  const languages: System_language[] = ["en", "ar"];
 
   const schema: Record<string, StringSchema> = {};
 
