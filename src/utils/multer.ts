@@ -1,23 +1,34 @@
+import fs from 'fs';
+import multer, { FileFilterCallback } from 'multer';
 import path from 'path';
-import { IRequest } from '../api/common/types.common';
-import multer from 'multer';
+import { Request } from 'express';
 
-const storage = multer.diskStorage({
-    destination: (req: IRequest, file: any, cb: any) => {
-        cb(null, path.join(__dirname, '../../../uploads/products'));
-    },
-    filename: (req: IRequest, file: any, cb: any) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        cb(null, uniqueSuffix + path.extname(file.originalname as string)); 
-    },
-});
+interface CustomRequest extends Request {
+    file?: multer.Multer.File;
+}
 
-export const upload = multer({
-    storage,
-    fileFilter: (req: IRequest, file : any, cb : any) => {
-        if (!file.mimetype.startsWith('image/')) {
-            return cb(new Error('Only image files are allowed!'), false);
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: (req: CustomRequest, file: multer.Multer.File, cb: (error: Error | null, destination: string) => void) => {
+            let uploadFolder = 'uploads/';
+            if (req.baseUrl.includes('items')) {
+                uploadFolder = path.join('uploads', 'items');
+            }
+
+            if (!fs.existsSync(uploadFolder)) {
+                fs.mkdirSync(uploadFolder, { recursive: true });
+            }
+
+            cb(null, uploadFolder);
+        },
+        filename: (req: CustomRequest, file: multer.Multer.File, cb: (error: Error | null, filename: string) => void) => {
+            const filename = `${Date.now()}-${Math.round(Math.random() * 1E9)}${path.extname(file.originalname)}`;
+            cb(null, filename);
         }
+    }),
+    fileFilter: (req: CustomRequest, file: multer.Multer.File, cb: FileFilterCallback) => {
         cb(null, true);
-    },
+    }
 });
+
+export { upload };

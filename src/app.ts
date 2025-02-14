@@ -32,12 +32,12 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.use(
-  "/static",
+  "/uploads",
   (req, res, next) => {
     res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
     next();
   },
-  express.static(path.join(__dirname, "../static"))
+  express.static(path.join(__dirname, "../uploads"))
 );
 
 app.use(BindRequestNamespace);

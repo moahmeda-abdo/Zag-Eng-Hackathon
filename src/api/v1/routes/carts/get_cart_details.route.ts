@@ -22,7 +22,7 @@ const CartDetailsController: Middleware = async (req, res) => {
 }
 
 router.get(
-	"/:id",
+	"/my-cart",
 	JOIValidateRequest(ObjectIdRouteParamsValidationSchema, "params"),
 	CartDetailsController,
 )

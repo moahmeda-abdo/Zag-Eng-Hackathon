@@ -13,13 +13,14 @@ const AddToCartController: Middleware = async (req, res) => {
     const product = await Product.findById(productId);
 
     if (!product) {
-        throw new NotFoundError("Product not found" , "منتج غير موجود");
+        throw new NotFoundError("Product not found", "منتج غير موجود");
     }
 
     const cart = await Cart.findOne({ user: userId });
 
     if (!cart) {
-        return await Cart.create({ user: userId, items: [{ product: productId, quantity }], totalPrice: product.price * quantity });
+        const cart = await Cart.create({ user: userId, items: [{ product: productId, quantity }], totalPrice: product.price * quantity });
+        return res.status(200).json({ status: 200, data: cart, message: "Product added to cart successfully", arMessage: "تمت اضافة المنتج الى السلة بنجاح" })
     }
 
     const existingItem = cart.items.find((item) => item.product.toString() === productId);
