@@ -2,6 +2,8 @@ import { Router } from "express";
 import { CategoriesRoutes } from "./routes/categorys";
 import { OrdersRoutes } from "./routes/orders";
 import { ProductsRoutes } from "./routes/products";
+import { AuthRoutes } from "./routes/auth";
+import { CartsRoutes } from "./routes/carts";
 
 
 const router = Router();
@@ -9,6 +11,8 @@ const router = Router();
 router.use("/categories", CategoriesRoutes)
 router.use("/orders", OrdersRoutes)
 router.use("/products", ProductsRoutes)
+router.use("/auth", AuthRoutes)
+router.use("/cart" , CartsRoutes)
 
 
 export { router as API_V1_ROUTES };

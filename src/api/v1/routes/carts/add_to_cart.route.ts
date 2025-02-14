@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { Middleware } from "../../../common/types.common";
 import { Cart } from "../../models/cart/cart.model";
+import { Product } from "../../models/product/product.model";
+import { NotFoundError } from "../../../../core/errors";
 
 const router = Router();
 
@@ -8,10 +10,16 @@ const AddToCartController: Middleware = async (req, res) => {
 
     const userId = req.user._id;
     const { productId, quantity = 1 } = req.body;
+    const product = await Product.findById(productId);
+
+    if (!product) {
+        throw new NotFoundError("Product not found" , "منتج غير موجود");
+    }
+
     const cart = await Cart.findOne({ user: userId });
 
     if (!cart) {
-        return await Cart.create({ user: userId, items: [{ product: productId, quantity }], totalPrice: 0 });
+        return await Cart.create({ user: userId, items: [{ product: productId, quantity }], totalPrice: product.price * quantity });
     }
 
     const existingItem = cart.items.find((item) => item.product.toString() === productId);
@@ -20,6 +28,7 @@ const AddToCartController: Middleware = async (req, res) => {
         existingItem.quantity += quantity;
     } else {
         cart.items.push({ product: productId, quantity });
+        cart.totalPrice += product.price * quantity;
     }
 
     await cart.save();
