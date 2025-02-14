@@ -11,6 +11,7 @@ const schema = new mongoose.Schema<ProductDocument, ProductModel>({
   category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
   images: [{ type: String }], 
   is_deleted: { type: Boolean, default: false },
+  brand: { type: String }
 }, { timestamps: true })
 
 

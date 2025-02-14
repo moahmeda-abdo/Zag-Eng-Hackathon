@@ -1,11 +1,10 @@
 import { Router, Request } from "express";
-
 import { Product } from "../../models/product/product.model";
-const router = Router();
-
-
-
 import { Middleware } from "../../../common/types.common";
+
+
+
+const router = Router();
 
 const GetProductController: Middleware = async (req, res) => {
 	const limit = +(req.query.limit ?? "20");
@@ -33,15 +32,14 @@ router.get(
 export { router as GetProductsRoute };
 
 function buildQuery(req: Request) {
-	const { category , min_price , max_price , name } = req.query as Record<string, any>;
+	const { category, min_price, max_price, name, brand } = req.query as Record<string, any>;
 	const query: Record<string, any> = {
 		is_deleted: false,
 		...(category && { category }),
 		...(min_price && { price: { $gte: min_price } }),
 		...(max_price && { price: { $lte: max_price } }),
 		...(name && { name: { $regex: name, $options: "i" } }),
-
-
+		...(brand && { brand: { $regex: brand, $options: "i" } }),
 	}
 
 	return query;
