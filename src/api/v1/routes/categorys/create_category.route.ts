@@ -18,6 +18,8 @@ const CreateCategoryController: Middleware = async (req, res) => {
   res.status(201).json({
     status: 201,
     data: category,
+    message: "category created successfully",
+    arMessage : "تم إنشاء الفئة بنجاح"
   });
 };
 

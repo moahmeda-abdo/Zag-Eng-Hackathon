@@ -1,15 +1,8 @@
 import { Router, Request, Response } from "express";
-
 import { User } from '../../models/user/user.model';
 import { UpdateUserData } from "../../models/user/interfaces/user_document.interface";
-
-
-
-
 import { JOIValidateRequest } from '../../../../core/middleware/validation/joi-validate-request.middleware';
 import { UpdateUserValidationSchema } from './validation/update_user.validation';
-
-
 import { Middleware } from "../../../common/types.common";
 import { NotFoundError } from '../../../../core/errors/not-found.error';
 

@@ -17,7 +17,7 @@ const OrderDetailsController: Middleware = async (req, res) => {
 	const id = req.params.id;
 	const order = await Order.findOne({ _id: id  , is_deleted: false });
 	if (!order || order.is_deleted) throw new NotFoundError("Order Not Found", "لم يتم العثور علي الطلب");
-	res.status(200).json({status: 200, data: order })
+	res.status(200).json({status: 200, data: order , message : "Order Found Successfully", arMessage : "تم العثور على الطلب بنجاح" })
 }
 
 router.get(

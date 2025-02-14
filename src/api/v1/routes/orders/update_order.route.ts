@@ -29,7 +29,7 @@ const UpdateOrderController: Middleware = async (req, res) => {
 
     if (!order || order.is_deleted) throw new NotFoundError("order Not Found With Given Id", "لم يتم العثور علي الطلب");
 
-    res.status(200).json({status: 200, data: (order) } )
+    res.status(200).json({status: 200, data: (order) , message : "Order Updated Successfully", arMessage : "تم تحديث الطلب بنجاح" } )
 }
 
 router.put(

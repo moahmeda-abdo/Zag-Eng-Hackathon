@@ -18,6 +18,8 @@ const CreateOrderController: Middleware = async (req, res) => {
   res.status(201).json({
     status: 201,
     data: order,
+    message: "order created successfully",
+    arMessage : "تم إنشاء الطلب بنجاح"
   });
 };
 

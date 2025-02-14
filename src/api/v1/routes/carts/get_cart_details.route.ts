@@ -18,7 +18,7 @@ const CartDetailsController: Middleware = async (req, res) => {
 		return res.status(200).json({ status: 200, data: cart })
 	}
 	
-	res.status(200).json({ status: 200, data: cart })
+	res.status(200).json({ status: 200, data: cart , message : "Cart Found Successfully", arMessage : "تم العثور على السلة بنجاح" })
 }
 
 router.get(

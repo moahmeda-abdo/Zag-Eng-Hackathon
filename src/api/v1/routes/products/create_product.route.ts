@@ -23,6 +23,8 @@ const CreateProductController: Middleware = async (req, res) => {
   res.status(201).json({
     status: 201,
     data: product,
+    message: "product created successfully",
+    arMessage : "تم إنشاء المنتج بنجاح"
   });
 };
 

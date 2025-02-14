@@ -18,6 +18,8 @@ const CreateUserController: Middleware = async (req, res) => {
   res.status(201).json({
     status: 201,
     data: user,
+    message: "user created successfully",
+    arMessage : "تم إنشاء المستخدم بنجاح"
   });
 };
 

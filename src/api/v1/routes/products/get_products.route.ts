@@ -21,7 +21,9 @@ const GetProductController: Middleware = async (req, res) => {
 	res.status(200).json({
 		status: 200,
 		data: await Product.find(query).sort(sort).limit(limit).skip(skip).select("-is_deleted"),
-		total: totalDocumentsCount
+		total: totalDocumentsCount,
+		Message: "Products Found Successfully",
+		arMessage: "تم العثور على المنتجات بنجاح"
 	});
 };
 router.get(
