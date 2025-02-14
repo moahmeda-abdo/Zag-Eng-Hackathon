@@ -16,7 +16,7 @@ const schema = new mongoose.Schema<UserDocument, UserModel>({
 
 schema.statics.build = (data: CreateUserData) => new User(data);
 
-export const User = mongoose.model<UserDocument, UserModel>(
-  UserModelName,
-  schema
-);
+// export const User = mongoose.model<UserDocument, UserModel>(
+//   UserModelName,
+//   schema
+// );
