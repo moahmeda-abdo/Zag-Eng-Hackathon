@@ -11,7 +11,7 @@ export type System_language = "ar" | "en";
 
 export type MultiLanguageField = Record<System_language, string>;
 
-export type IRequest = Request & { user?: any };
+export type IRequest = Request & { user?: any } & { files?: any };
 export type Middleware = (
 	req: IRequest,
 	res: Response,
