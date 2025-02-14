@@ -7,6 +7,7 @@ export interface User {
   password: string;
   role: 'customer' | 'admin';
   cart: Object_id_or_string;
+  phone: string;
   is_deleted: boolean;
   createdAt: Date;
   updatedAt: Date;

@@ -6,7 +6,7 @@ export class RequestValidationError extends CustomError {
 	statusCode: number = 400;
 
 	constructor(
-		public errors: { message: string; field: string; path: string }[]
+		public errors: { message: string; arMessage?: string, field: string; path: string }[]
 	) {
 		super();
 		Object.setPrototypeOf(this, RequestValidationError.prototype);
@@ -15,9 +15,11 @@ export class RequestValidationError extends CustomError {
 	serialize(): FORMATTED_ERROR[] {
 		return this.errors.map((err) => ({
 			message: err.message,
+			arMessage: err.arMessage,
 			field: err.field,
 			path: err.path,
 			serial: this.serial,
+			status: this.statusCode
 		}));
 	}
 }

@@ -7,13 +7,14 @@ export class UnAuthorizedError extends CustomError {
 
 	constructor(
 		message: string = "Un Authorized Request",
-		serial: string = "UN_AUTHORIZED"
+		arMessage: string = "طلب غير مصرح به",
+		serial: string = "UN_AUTHORIZED",
 	) {
-		super(message);
+		super(message, arMessage);
 		this.serial = serial;
 		Object.setPrototypeOf(this, UnAuthorizedError.prototype);
 	}
 	serialize(): FORMATTED_ERROR[] {
-		return [{ message: this.message, serial: this.serial }];
+		return [{ message: this.message, arMessage: this.arMessage, serial: this.serial, status: this.statusCode }];
 	}
 }

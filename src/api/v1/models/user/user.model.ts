@@ -8,8 +8,9 @@ const schema = new mongoose.Schema<UserDocument, UserModel>({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  phone: { type: String },
   role: { type: String, enum: ['customer', 'admin'], default: 'customer' },
-  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Cart' }],
+  cart: { type: mongoose.Schema.Types.ObjectId, ref: 'Cart' },
 } , { timestamps: true })
 
 
