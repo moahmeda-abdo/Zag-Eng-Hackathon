@@ -36,5 +36,5 @@ router.post(
     SignupController
 );
 
-export { router as LoginRoute };
+export { router as SignupRoute };
 
