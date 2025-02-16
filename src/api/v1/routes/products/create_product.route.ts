@@ -10,7 +10,7 @@ const router = Router();
 const CreateProductController: Middleware = async (req, res) => {
   const data = req.body as RequestData;
 
-  const images = req.files ? (req.files as any[]).map(file => `/uploads/products/${file.filename}`) : [];
+  const images = req.files ? (req.files as any[]).map(file => `/uploads/${file.filename}`) : [];
 
   const buildData: CreateProductData = {
     ...data,
